@@ -1,0 +1,883 @@
+<link rel="stylesheet" href="adminmodule.component.css"> 
+
+<!--Card for Forecasting Dashboard [Add & Update Functionality]-->
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header card-header-success">
+          <h4 class="card-title">Admin Module</h4>
+            <p class="card-category">Please input required data</p>
+        </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="card card-chart">
+                      <div class="card-header card-header-primary">
+                      <h5 class="card-title">Forecasting Dashboard</h5>
+                      <br>
+                      <div class="card-category">
+                      <div class="row justify-content-md-center">
+                          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#AddModal">
+                            ADD DATA </button>
+                          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#UpdateModal">
+                            UPDATE DATA</button>     
+                    </div> 
+                    </div> 
+                    </div>
+                  <div class="card-footer">
+                      <div class="stats">  
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+
+<!-- Card for Analysis Dashboard [Add & Update Functionality] -->
+              <div class="col-md-6">
+                  <div class="card card-chart">
+                  <div class="card-header card-header-primary">
+                  <h5 class="card-title">Analysis Dashboard</h5>
+                <br>
+                  <div class="card-category">
+                  <div class="row justify-content-md-center">
+                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#AddModalAnalysis">
+                   ADD DATA</button>
+                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#sheesh">
+                  UPDATE DATA</button>
+                </div> 
+                </div> 
+              </div>
+              <div class="card-footer">
+                  <div class="stats">
+                  </div>
+              </div>
+            </div>
+              </div>
+                </div>
+                </div> 
+                </div>
+                </div>
+
+          <!-- Modal for Analysis Dashboard (Updating Data for Obj. 2) -->
+
+<div class="modal fade" id="sheesh" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Input Analysis Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <h5>Date: {{dateTime | date }}</h5>
+           <div class="container">      
+             <form [formGroup]="totalCovidCasesForm" (ngSubmit)="postTotalCovidCases(totalCovidCasesForm)" autocomplete="off">
+             <!--Total Covid Cases-->
+              <div class="row justify-content-md-center">
+               <div class=".col-sm-">
+                <label for="">Total Covid Cases:</label>
+               </div>
+               <div class="col-md-auto">
+                 <input type="number" class="form-control" name="totalcovidcases" formControlName="totalcovidcases">
+               </div>
+               <div class=".col-sm-">
+                 <button class ="btn-success" (click)="UpdateTotalCovidCases()">Update</button>
+               </div>
+             </div>
+           </form>
+           </div>
+
+                 <div class="container">
+                   <form [formGroup]="recoveryForm" (ngSubmit)="postRecoveryRate(recoveryForm)" autocomplete="off">
+                 <!-- Recovery Count-->
+                 <div class="row justify-content-md-center">
+                   <div class=".col-sm-">
+                    <label for="">Recovery Count:</label>
+                   </div>
+                   <div class="col-md-auto">
+                     <input type="number" class="form-control" name="recoverycount" formControlName="recoverycount">
+                   </div>
+                   <div class=".col-sm-">
+                     <button class ="btn-success" (click)="UpdateRecoveryRate()">Update</button>
+                   </div>
+                 </div>
+                </form>
+               </div>
+        
+               
+                  <!--Mortality Count-->
+                <div class="container">
+               <form [formGroup]="mortalityForm" (ngSubmit)="postMortalityRate(mortalityForm)" autocomplete="off">
+                 <div class="row justify-content-md-center">
+                   <div class=".col-sm-">
+                    <label for="">Mortality Count:</label>
+                   </div>
+                   <div class="col-md-auto">
+                     <input type="number" class="form-control" name="mortalitycount" formControlName="mortalitycount">
+                   </div>
+                   <div class=".col-sm-">
+                     <button class ="btn-success" (click)="UpdateMortalityRate()" >Update</button>
+                   </div>
+                 </div>
+               </form>
+               </div>
+            <br>
+          <!--Data for each cases per Municipality-->
+            <form [formGroup]="casesbymunicipalityForm" (ngSubmit)="postcasesbymunicipality(casesbymunicipalityForm)" autocomplete="off">
+           <h4>Data for Tarlac Total Covid-19 Cases</h4>
+           <div class="container">
+            <div class="row">
+              <div class="col order-last">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Paniqui:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="paniqui" formControlName="paniqui">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col order-first">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Anao:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="anao" formControlName="anao">
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col order-last">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Pura:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="pura" formControlName="pura">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col order-first">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Bamban:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="bamban" formControlName="bamban">
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col order-last">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Ramos:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="ramos" formControlName="ramos">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col order-first">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Camiling:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="camiling" formControlName="camiling">
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row">
+              <div class="col order-last">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">San Clemente:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="sanclemente" formControlName="sanclemente">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col order-first">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Capas:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="capas" formControlName="capas">
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row">
+              <div class="col order-last">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">San Jose</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="sanjose" formControlName="sanjose">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col order-first">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Concepcion</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="concepcion" formControlName="concepcion">
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row">
+              <div class="col order-last">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">San Miguel:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="sanmiguel" formControlName="sanmiguel">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col order-first">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Gerona:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="gerona" formControlName="gerona">
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col order-last">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Santa Ignacia:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="santaignacia" formControlName="santaignacia">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col order-first">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Lapaz:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="lapaz" formControlName="lapaz">
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row">
+              <div class="col order-last">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Tarlac City:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="tarlaccity" formControlName="tarlaccity">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col order-first">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Mayantoc:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="mayantoc" formControlName="mayantoc">
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row">
+              <div class="col order-last">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Victoria:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="victoria" formControlName="victoria">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col order-first">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Moncada:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="moncada" formControlName="moncada">
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+
+ 
+           <div class="container">
+             <div class="row justify-content-md-center">
+                <div class=".col-sm-">
+                 <button class ="btn-success" (click)="UpdateCasesByMunicipality()">Update</button>
+               </div>
+             </div>
+           </div>
+          </form>
+            
+           
+       <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         <button class="btn btn-success" (click)="hideAnalysisUpdateModal()" (click)="showToastUpdateAnalysis()">Done</button>
+       </div>
+      
+       </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+          <!-- Forecasting Dashboard Toast (Add, Update) -->
+          <div class="toast" id ="addtoast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000"
+          style="position: absolute; bottom: 100px; left: 40px;">
+            <div class="toast-header">
+              <strong class="mr-auto">Forecasting Dashboard</strong>
+              <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="toast-body">
+             <b>Data Added Successfully!</b> 
+            </div>
+          </div>
+          <div class="toast" id ="updatetoast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000"
+          style="position: absolute; bottom: 100px; left: 40px;">
+            <div class="toast-header">
+              <strong class="mr-auto">Forecasting Dashboard</strong>
+              <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="toast-body">
+             <b> Data Updated Successfully!</b> 
+            </div>
+          </div>
+
+           <!-- Analysis Dashboard Toast (Add, Update) -->
+           <div class="toast" id ="addtoastAnalysis" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000"
+          style="position: absolute; bottom: 100px; left: 40px;">
+            <div class="toast-header">
+              <strong class="mr-auto">Analysis Dashboard</strong>
+              <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="toast-body">
+             <b>Data Added Successfully!</b> 
+            </div>
+          </div>
+          <div class="toast" id ="updatetoastAnalysis" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000"
+          style="position: absolute; bottom: 100px; left: 40px;">
+            <div class="toast-header">
+              <strong class="mr-auto">Analysis Dashboard</strong>
+              <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="toast-body">
+             <b> Data Updated Successfully!</b> 
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-auto mr-auto"> </div>
+            <div class="col-auto"><button class="btn btn-success" (click)="logOut()" position="right">Log Out</button></div>
+          </div>
+
+
+
+<!-- Modal for Forecasting Dashboard [Add Time Lag Values]-->
+<div class="modal fade" id="AddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog"> 
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Input Past Total Covid Cases on:</h5>
+       
+        <button type="button"  #closebutton class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="angForm" (ngSubmit)="postTimeLag(angForm)" autocomplete="off">
+          <div class="form-group">
+         
+              <label for="timelag1">{{timeLag1  | date }}</label>
+              <input type="number" class="form-control" formControlName="timelag1" id="timelag1" autocomplete="off">
+              <div class="error" *ngIf="angForm.controls['timelag1'].hasError('required')
+              && angForm.controls['timelag1'].touched">Please Enter Time Lag 1 
+              </div>
+
+              <label for="timelag2">{{timeLag2  | date }}</label>
+              <input type="number" class="form-control" formControlName="timelag2" id="timelag2" autocomplete="off">
+              <div class="error" *ngIf="angForm.controls['timelag2'].hasError('required')
+              && angForm.controls['timelag2'].touched">Please Enter Time Lag 2 
+               </div>
+  
+               <label for="timelag3">{{timeLag3  | date }}</label>
+              <input type="number" class="form-control" formControlName="timelag3" id="timelag3" autocomplete="off">
+                <div class="error" *ngIf="angForm.controls['timelag3'].hasError('required')
+                && angForm.controls['timelag3'].touched">Please Enter Time Lag 3 </div> 
+  
+                <label for="timelag4">{{timeLag4  | date }}</label>
+                <input type="number" class="form-control" formControlName="timelag4" id="timelag4" autocomplete="off">
+                  <div class="error" *ngIf="angForm.controls['timelag4'].hasError('required')
+                  && angForm.controls['timelag4'].touched">Please Enter Time Lag 4</div> 
+  
+               <label for="timelag5">{{dateTime  | date }}</label>
+              <input type="number" class="form-control" formControlName="timelag5" id="timelag5" autocomplete="off">
+                <div class="error" *ngIf="angForm.controls['timelag5'].hasError('required')
+                && angForm.controls['timelag5'].touched">Please Enter Time Lag 5 </div> 
+            </div>
+          
+     
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-success"[disabled]="angForm.invalid" (click)="hideForecastingAddModal()" (click)="showToastAdd()" >Add</button>
+      </div>
+      </form>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<!-- Modal for Forecasting Dashboard [Update Time Lag Values]-->
+<div class="modal fade" id="UpdateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Input Past Total Covid Cases on:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="angForm" (ngSubmit)="postTimeLag(angForm)" autocomplete="off">
+          <div class="form-group">
+         
+              <label for="timelag1">{{timeLag1  | date }}</label>
+              <input type="number" class="form-control" formControlName="timelag1" id="timelag1" autocomplete="off">
+              <div class="error" *ngIf="angForm.controls['timelag1'].hasError('required')
+              && angForm.controls['timelag1'].touched">Please Enter Time Lag 1 
+              </div>
+
+              <label for="timelag2">{{timeLag2 | date }}</label>
+              <input type="number" class="form-control" formControlName="timelag2" id="timelag2" autocomplete="off">
+              <div class="error" *ngIf="angForm.controls['timelag2'].hasError('required')
+              && angForm.controls['timelag2'].touched">Please Enter Time Lag 2 
+               </div>
+  
+               <label for="timelag3">{{timeLag3 | date }}</label>
+              <input type="number" class="form-control" formControlName="timelag3" id="timelag3" autocomplete="off">
+                <div class="error" *ngIf="angForm.controls['timelag3'].hasError('required')
+                && angForm.controls['timelag3'].touched">Please Enter Time Lag 3 </div> 
+  
+                <label for="timelag4">{{timeLag4  | date }}</label>
+                <input type="number" class="form-control" formControlName="timelag4" id="timelag4" autocomplete="off">
+                  <div class="error" *ngIf="angForm.controls['timelag4'].hasError('required')
+                  && angForm.controls['timelag4'].touched">Please Enter Time Lag 4</div> 
+  
+               <label for="timelag5">{{dateTime  | date }}</label>
+              <input type="number" class="form-control" formControlName="timelag5" id="timelag5" autocomplete="off">
+                <div class="error" *ngIf="angForm.controls['timelag5'].hasError('required')
+                && angForm.controls['timelag5'].touched">Please Enter Time Lag 5 </div> 
+            </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-success"[disabled]="angForm.invalid" (click)="showToastUpdate()" (click)="updateData()" (click)="hideForecastingUpdateModal()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Analysis Dashboard (Adding Data for Obj. 2) -->
+
+<div class="modal fade" id="AddModalAnalysis" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Input Analysis Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+         <h5>Date: {{dateTime | date }}</h5>
+          <div class="container">
+            <form [formGroup]="totalCovidCasesForm" (ngSubmit)="postTotalCovidCases(totalCovidCasesForm)" autocomplete="off">
+          
+        <!--Total Covid Cases-->
+              <div class="row justify-content-md-center">
+              <div class=".col-sm-">
+               <label for="">Total Covid Cases:</label>
+              </div>
+              <div class="col-md-auto">
+                <input type="number" class="form-control" name="totalcovidcases" formControlName="totalcovidcases">
+              </div>
+              <div class=".col-sm-">
+                <button type="submit" class="btn-success">Add</button>
+              </div>
+            </div>
+          </form>
+          </div>
+
+      <!--Recovery Count-->
+                <div class="container">
+                  <form [formGroup]="recoveryForm" (ngSubmit)="postRecoveryRate(recoveryForm)" autocomplete="off">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Recovery Count:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="recoverycount" formControlName="recoverycount">
+                  </div>
+                  <div class=".col-sm-">
+                    <button type="submit" class="btn-success">Add</button>
+                  </div>
+                </div>
+               </form>
+              </div>
+       
+      <!--Mortality Count--> 
+               <div class="container">
+              <form [formGroup]="mortalityForm" (ngSubmit)="postMortalityRate(mortalityForm)" autocomplete="off">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Mortality Count:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="mortalitycount" formControlName="mortalitycount">
+                  </div>
+                  <div class=".col-sm-">
+                    <button type="submit" class="btn-success">Add</button>
+                  </div>
+                </div>
+              </form>
+              </div>
+           <br>
+         
+        <!--Data for each cases per Municipality-->
+           <form [formGroup]="casesbymunicipalityForm" (ngSubmit)="postcasesbymunicipality(casesbymunicipalityForm)" autocomplete="off">
+          <h4>Data for Tarlac Total Covid-19 Cases</h4>
+          <div class="container">
+            <div class="row">
+              <div class="col order-last">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Paniqui:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="paniqui" formControlName="paniqui">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col order-first">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Anao:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="anao" formControlName="anao">
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col order-last">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Pura:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="pura" formControlName="pura">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col order-first">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Bamban:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="bamban" formControlName="bamban">
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col order-last">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Ramos:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="ramos" formControlName="ramos">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col order-first">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Camiling:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="camiling" formControlName="camiling">
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row">
+              <div class="col order-last">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">San Clemente:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="sanclemente" formControlName="sanclemente">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col order-first">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Capas:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="capas" formControlName="capas">
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row">
+              <div class="col order-last">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">San Jose</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="sanjose" formControlName="sanjose">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col order-first">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Concepcion</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="concepcion" formControlName="concepcion">
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row">
+              <div class="col order-last">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">San Miguel:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="sanmiguel" formControlName="sanmiguel">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col order-first">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Gerona:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="gerona" formControlName="gerona">
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col order-last">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Santa Ignacia:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="santaignacia" formControlName="santaignacia">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col order-first">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Lapaz:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="lapaz" formControlName="lapaz">
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row">
+              <div class="col order-last">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Tarlac City:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="tarlaccity" formControlName="tarlaccity">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col order-first">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Mayantoc:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="mayantoc" formControlName="mayantoc">
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row">
+              <div class="col order-last">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Victoria:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="victoria" formControlName="victoria">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col order-first">
+                <div class="row justify-content-md-center">
+                  <div class=".col-sm-">
+                   <label for="">Moncada:</label>
+                  </div>
+                  <div class="col-md-auto">
+                    <input type="number" class="form-control" name="moncada" formControlName="moncada">
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row justify-content-md-center">
+               <div class=".col-sm-">
+                <button type="submit" class="btn-success">Add</button>
+              </div>
+            </div>
+          </div>
+         </form>
+           
+          
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-success" (click)="hideAnalysisAddModal()" (click)="showToastAddAnalysis()">Done</button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+

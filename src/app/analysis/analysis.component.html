@@ -1,0 +1,75 @@
+
+<div class="main-content">
+  <div class="container-fluid">
+
+    <!--Pie Chart for Mortality Rate-->
+          <div class="row">
+            <div class="col-md-6">
+            <div class="card card-chart">
+                <div class="card-header card-header-primary">
+                  <p class="card-category">
+                     <div id="mortalityRate">
+                     </div>
+                </div>
+                <div class="card-footer">
+                    <div>
+                      <ul>
+                        <li><b>There is {{this.mortalityincreasecount}} or {{this.mortalityincreasepercent}}% increase of Mortality Count prior to the update</b></li>
+                      </ul>
+                        <div class="stats">
+                          <i class="material-icons">access_time</i> <b>{{dateTime | date }}</b>
+                        </div>
+                        <!-- <i class="material-icons">access_time</i> <b>{{dateTime | date }}</b> -->
+                    </div>
+                    
+                    
+                </div>
+
+            </div>
+        </div>
+
+    <!--Pie Chart for Recovery Rate-->
+            <div class="col-md-6">
+            <div class="card card-chart">
+                <div class="card-header card-header-info">
+                  <h6 class="card-title" ></h6>
+                  <p class="card-category">
+                    <div id="recoveryRate">
+                    </div>
+                  
+                </div>
+                <div class="card-footer">
+                  <div>
+                    <ul>
+                      <li><b>There is {{this.recoveryincreasecount}} or {{this.recoveryincreasepercent}}% increase of Recovery Count prior to the update</b></li>
+                    </ul>
+                      <div class="stats">
+                        <i class="material-icons">access_time</i> <b>{{dateTime | date }}</b>
+                      </div>
+                </div>
+
+            </div>
+        </div>
+      </div>
+
+    <!--Bar Chart for each Cases in Municipality-->
+      <div class="  card mb-3 ">
+          <div class="card-header card-header-info">
+                    <div id='casesbymunicipality'>
+                    </div>
+                    </div>
+                    <div class="card-footer">
+                      <div>
+                        <ul>
+                          <li><b>There is {{this.totalcovidcasesincreasecount}} or {{this.totalcovidcasesincreasepercent}}% increase of Total Covid Cases in Municipalities of Tarlac prior to the update</b></li>
+                        </ul>
+                          <div class="stats">
+                            <i class="material-icons">access_time</i> <b>{{dateTime | date }}</b>
+                          </div>
+                  </div>
+  </div>
+</div> 
+
+
+
+
